@@ -1,21 +1,33 @@
-# 🚀 LeadGen ESN – x2 Leads avec Claude
+# 🚀 LeadGen ESN – x2 Leads Qualifiés (n8n + Claude)
 
-[![n8n](https://img.shields.io/badge/n8n-green)] [![Claude](https://img.shields.io/badge/Claude-blue)]
+[![n8n](https://img.shields.io/badge/n8n-Workflow-green)] [![Claude](https://img.shields.io/badge/Claude-Anthropic-blue)]
 
-**Teste GRATUITEMENT** → **x2 leads qualifiés** pour ton ESN.
+## 🎯 Résultat immédiat
+**Test GRATUIT** → Email prospection personnalisé en 10min.  
+**ROI** : -4h/jour commercial → +24k€ CA/an.
 
-**Problème** : 4h/jour recherche prospects.  
-**Solution** : Workflow n8n/Claude = email personnalisé 10min.  
-**ROI** : +24k€ CA/an.
+**[TEST WORKFLOW → BOOK DEMO 15min]**
 
-**[IMPORT + TEST → BOOK DEMO]**
+## Problème ESN
+- Recherche prospects : 4h/jour
+- Emails génériques : 2% réponse
+- CA stagnant
 
-## Quick Start
+## Solution
+1. Input : Nom prospect (Sheets/CRM)
+2. Claude : Analyse pains + pitch IA
+3. Output : Email prêt + Sheets log
+
+
+## 🚀 Test en 60s
 1. Download `workflow-leadgen.json`
-2. n8n Import → Claude API → Run
+2. n8n → Import → Claude API → Run
 
-**Exemple** : "Cabinet X" → "Bonjour, vos PME perdent 15h/sem reporting..."
+## 💰 Custom (3,5k€ - 3 places)
+Plug CRM/données + formation équipe.
 
-**Custom 3,5k€ (3 places sem)**
+**Calendly Demo** : calendly.com/jemai
+**LinkedIn** : https://www.linkedin.com/in/zjemai/
 
-[ZAYN | Calendly → LinkedIn]
+⭐ Star si testé !
+
