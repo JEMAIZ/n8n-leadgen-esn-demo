@@ -26,7 +26,7 @@
 ## 💰 Custom (3,5k€ - 3 places)
 Plug CRM/données + formation équipe.
 
-**Calendly Demo** : [BOOK DEMO → https://calendly.com/zayn/demo-ia-esn
+**Calendly Demo** : [BOOK DEMO → https://calendly.com/jemai/demo-ia-esn-15min
 
 **LinkedIn** : https://www.linkedin.com/in/zjemai/
 
