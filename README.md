@@ -27,6 +27,7 @@
 Plug CRM/données + formation équipe.
 
 **Calendly Demo** : calendly.com/jemai
+
 **LinkedIn** : https://www.linkedin.com/in/zjemai/
 
 ⭐ Star si testé !
