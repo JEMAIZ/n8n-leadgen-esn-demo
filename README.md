@@ -1,40 +1,21 @@
-# n8n LeadGen ESN Demo – Agent de Prospection & Upsell pour Cabinets de Conseil / ESN
+# 🚀 LeadGen ESN – x2 Leads avec Claude
 
-[![n8n](https://img.shields.io/badge/n8n-Workflow-green)](https://n8n.io)
-[![Anthropic](https://img.shields.io/badge/Anthropic-Claude-blue)](https://anthropic.com)
-[![Status](https://img.shields.io/badge/Status-Demo_Pro-blue)](#)
+[![n8n](https://img.shields.io/badge/n8n-green)] [![Claude](https://img.shields.io/badge/Claude-blue)]
 
-## 🎯 Objectif
+**Teste GRATUITEMENT** → **x2 leads qualifiés** pour ton ESN.
 
-Automatiser la **génération de leads qualifiés** et l'**upsell** pour les cabinets de conseil / ESN, sans recruter de nouveaux commerciaux.
+**Problème** : 4h/jour recherche prospects.  
+**Solution** : Workflow n8n/Claude = email personnalisé 10min.  
+**ROI** : +24k€ CA/an.
 
-Ce workflow montre comment passer de quelques données sur un prospect à un **email personnalisé prêt à envoyer**, en quelques secondes avec **Claude d'Anthropic**.
+**[IMPORT + TEST → BOOK DEMO]**
 
----
+## Quick Start
+1. Download `workflow-leadgen.json`
+2. n8n Import → Claude API → Run
 
-## 🧩 Cas d'usage business
+**Exemple** : "Cabinet X" → "Bonjour, vos PME perdent 15h/sem reporting..."
 
-**Pain point ESN :**
+**Custom 3,5k€ (3 places sem)**
 
-- Pression constante sur le **CA et le taux d'occupation**.
-- Commerciaux qui passent des heures à chercher des infos sur les prospects et à rédiger des emails.
-- Difficile de prouver un **ROI concret de l'IA** aux dirigeants.
-
-**Ce que fait le workflow :**
-
-1. Récupère un prospect (ou une liste) depuis un fichier / Google Sheets / CRM.
-2. Enrichit le prospect (site web, activité, mots-clés, pains probables).
-3. Utilise **Claude (Anthropic)** pour :
-   - Résumer le contexte du prospect.
-   - Proposer un angle de valeur IA/automation adapté.
-4. Génère un **email de prospection ultra-personnalisé** prêt à être envoyé.
-5. Enregistre tout dans Google Sheets et peut notifier via Slack / Email interne.
-
----
-
-## 🔧 Stack technique
-
-- **Automation** : n8n
-- **LLM** : **Anthropic Claude** (via API)
-- **Stockage** : Google Sheets (ou CSV / base interne)
-- **Notifications**
+[ZAYN | Calendly → LinkedIn]
