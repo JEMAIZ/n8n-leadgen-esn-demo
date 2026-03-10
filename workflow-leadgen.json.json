@@ -1,0 +1,337 @@
+{
+  "name": "Automated-genLead-ESN",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1auQfx9kak-Ec30lgVb1B53RmJX0It7sFT3YGKx1HyyU",
+          "mode": "list",
+          "cachedResultName": "Prospection_IA_ESN",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1auQfx9kak-Ec30lgVb1B53RmJX0It7sFT3YGKx1HyyU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Cockpit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1auQfx9kak-Ec30lgVb1B53RmJX0It7sFT3YGKx1HyyU/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Statut",
+              "lookupValue": "En attente"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "afffee32-ac7d-413d-b2c0-168410c176e5",
+      "name": "Lire Prospects En Attente",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        0,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zGl3FwUjXlhzwSJ7",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json[\"URL Site Web\"] }}",
+        "options": {}
+      },
+      "id": "fa3b9573-6671-428f-9bde-d2b0b37f19bf",
+      "name": "Fetch Website",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        224,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "contenu_propre",
+              "cssSelector": "body"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "22df14d2-6803-4f92-a873-d50011f8077c",
+      "name": "Extraire Contenu",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "claude-haiku-4-5-20251001",
+          "mode": "list",
+          "cachedResultName": "claude-haiku-4-5-20251001"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Voici les infos sur l'ESN {{ $node[\"Lire Prospects En Attente\"].json[\"Nom de l'ESN\"] }} :\nAngle d'attaque : {{ $node[\"Lire Prospects En Attente\"].json[\"Spécialité / Angle d'attaque pour ton IA\"] }}\nContenu du site : {{ $json.contenu_propre }}\n\nRédige un email ultra-personnalisé de 3 phrases max pour proposer une collaboration IA."
+            }
+          ]
+        },
+        "options": {
+          "system": "Expert BizDev ESN IA. Style minimaliste.",
+          "temperature": 0.7
+        }
+      },
+      "id": "27db5f99-fbda-4480-8d80-ab69d68bdfa7",
+      "name": "Générer Email",
+      "type": "@n8n/n8n-nodes-langchain.anthropic",
+      "typeVersion": 1,
+      "position": [
+        672,
+        0
+      ],
+      "credentials": {
+        "anthropicApi": {
+          "id": "gjCM2DATWxVGGhjH",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "zaynup55@gmail.com",
+        "subject": "=Draft Outreach : {{ $node[\"Lire Prospects En Attente\"].json[\"Nom de l'ESN\"] }}",
+        "emailType": "text",
+        "message": "={{ $json.content[0].text }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "7e56dba6-4a0e-476f-9bf6-e3e6b7db470a",
+      "name": "Créer Brouillon",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1024,
+        0
+      ],
+      "webhookId": "4f8c525f-ff3e-4ea0-a12b-b1ea2de7e914",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ioejyEQnl37R6sz6",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1auQfx9kak-Ec30lgVb1B53RmJX0It7sFT3YGKx1HyyU",
+          "mode": "list",
+          "cachedResultName": "Prospection_IA_ESN",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1auQfx9kak-Ec30lgVb1B53RmJX0It7sFT3YGKx1HyyU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Cockpit",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1auQfx9kak-Ec30lgVb1B53RmJX0It7sFT3YGKx1HyyU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Statut": "Brouillon généré",
+            "Date": "={{ $now.format('dd/MM/yyyy HH:mm') }}",
+            "row_number": "={{ $node[\"Lire Prospects En Attente\"].json[\"row_number\"] }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Nom de l'ESN",
+              "displayName": "Nom de l'ESN",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Spécialité / Angle d'attaque pour ton IA",
+              "displayName": "Spécialité / Angle d'attaque pour ton IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "URL Site Web",
+              "displayName": "URL Site Web",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Commentaire IA",
+              "displayName": "Commentaire IA",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "3e282bec-b4fa-4afc-8b2b-307fbfb9de4c",
+      "name": "Mettre à jour Statut",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1248,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "zGl3FwUjXlhzwSJ7",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Lire Prospects En Attente": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website": {
+      "main": [
+        [
+          {
+            "node": "Extraire Contenu",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraire Contenu": {
+      "main": [
+        [
+          {
+            "node": "Générer Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Générer Email": {
+      "main": [
+        [
+          {
+            "node": "Créer Brouillon",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Créer Brouillon": {
+      "main": [
+        [
+          {
+            "node": "Mettre à jour Statut",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "ff724455-cf67-4dcc-b9f2-bddcfb61c04e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9d2f44333fba8f57312f857d06721394e4fd576f11ee0e818e380c7bda47cf77"
+  },
+  "id": "jorGEk59rS4uvpVX",
+  "tags": [
+    {
+      "name": "working",
+      "id": "bKcNVC4yizH5dM4t",
+      "updatedAt": "2026-03-10T12:21:09.997Z",
+      "createdAt": "2026-03-10T12:21:09.997Z"
+    }
+  ]
+}
